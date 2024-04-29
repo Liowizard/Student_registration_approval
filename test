@@ -1,0 +1,23 @@
+{
+  "_id": {
+    "$oid": "6629ec681f812094ca02f682"
+  },
+  "email": "ajeshrandam@gmail.com",
+  "Approval_Status": "Yet to approve",
+  "biometric_data": {
+    "face": [
+      "student_face/ajeshrandam@gmail.com/image1.png"
+    ],
+    "Document": "student_ID/ajeshrandam@gmail.com.png"
+  },
+  "dob": "2024-04-18",
+  "gender": "male",
+  "mobile": "09790887594",
+  "name": {
+    "first": "Ajesh",
+    "last": "M",
+    "middle": ""
+  },
+  "password": "Digival@123",
+  "user_id": "4578"
+}
