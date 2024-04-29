@@ -13,6 +13,8 @@ function App() {
   const fetchData = async () => {
     try {
       const response = await fetch('http://192.168.1.7:8080/DataForApproval');
+
+      
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
