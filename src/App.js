@@ -5,6 +5,7 @@ import "./app.css"
 
 function App() {
   const [userData, setUserData] = useState([]);
+  const [loading, setLoading] = useState(true); // New loading state
 
   useEffect(() => {
     fetchData();
@@ -13,7 +14,7 @@ function App() {
   const fetchData = async () => {
     try {
       const response = await fetch('http://192.168.1.7:8080/DataForApproval');
-
+      setLoading(false); // Set loading to false when data is fetched
       
       if (!response.ok) {
         throw new Error('Failed to fetch data');
@@ -27,12 +28,15 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage userData={userData} />} />
-      </Routes>
+      {loading ? ( // Render loader if loading is true
+        <div><div className="loader"></div></div>
+      ) : (
+        <Routes>
+          <Route path="/" element={<HomePage userData={userData} />} />
+        </Routes>
+      )}
     </Router>
   );
 }
-
 
 export default App;
