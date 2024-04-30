@@ -15,29 +15,33 @@ function HomePage({ userData }) {
   return (
     <div className="container">
       <div className="home-page">
-        <div className="user-grid">
-          {userData.map((user) => (
-            <div key={user._id} className="user-box" onClick={() => handleUserClick(user)}>
-              <div className="user-info">
-                <h2>{user.name.first} {user.name.middle} {user.name.last}</h2>
-                <p>Email: {user.email}</p>
-                <p>User ID: {user.user_id}</p>
+        {userData && userData.length > 0 ? (
+          <div className="user-grid">
+            {userData.map((user) => (
+              <div key={user._id} className="user-box" onClick={() => handleUserClick(user)}>
+                <div className="user-info">
+                  <h2>{user.name.first} {user.name.middle} {user.name.last}</h2>
+                  <p>Email: {user.email}</p>
+                  <p>User ID: {user.user_id}</p>
+                </div>
+                <div className="captured-photo">
+                  {user.captured_images.map((image, index) => (
+                    <div key={index} className="image-container">
+                      <img
+                        src={image}
+                        alt={`Captured Image ${index + 1}`}
+                        className="captured-image"
+                        style={{ maxWidth: "150px", height: "auto", borderRadius: '5px' ,marginTop:"15px"}}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="captured-photo">
-                {user.captured_images.map((image, index) => (
-                  <div key={index} className="image-container">
-                    <img
-                      src={image}
-                      alt={`Captured Image ${index + 1}`}
-                      className="captured-image"
-                      style={{ maxWidth: "150px", height: "auto", borderRadius: '5px' ,marginTop:"15px"}}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div>No pending user</div>
+        )}
         {selectedUser && (
           <div className="popup">
             <div className="popup-content">
@@ -49,8 +53,8 @@ function HomePage({ userData }) {
       </div>
     </div>
   );
-  
 }
+
 
 function FullPageUserDetails({ user }) {
   const [reason, setReason] = useState('');

@@ -21,3 +21,27 @@
   "password": "Digival@123",
   "user_id": "4578"
 }
+
+{
+  "_id": {
+    "$oid": "662b9c021f812094ca9be8db"
+  },
+  "email": "ajesh@digivalsolutions.com",
+  "Approval_Status": "Yet to approve",
+  "biometric_data": {
+    "face": [
+      "student_face/ajesh@digivalsolutions.com/image1.png"
+    ],
+    "Document": "student_ID/ajesh@digivalsolutions.com.png"
+  },
+  "dob": "2024-04-18",
+  "gender": "male",
+  "mobile": "0887594",
+  "name": {
+    "first": "Test",
+    "last": "1",
+    "middle": ""
+  },
+  "password": "Digival@123",
+  "user_id": "45788"
+}
