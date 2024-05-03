@@ -16,4 +16,4 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-// http://192.168.1.7:8080/DataForApproval
+// https://student-registration-backend-yk25kmkzeq-el.a.run.app/DataForApproval

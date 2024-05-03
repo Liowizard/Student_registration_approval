@@ -13,7 +13,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://192.168.1.7:8080/DataForApproval');
+      const response = await fetch('https://student-registration-backend-yk25kmkzeq-el.a.run.app/DataForApproval');
       setLoading(false); // Set loading to false when data is fetched
       
       if (!response.ok) {

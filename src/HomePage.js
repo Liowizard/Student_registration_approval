@@ -31,7 +31,7 @@ function HomePage({ userData, setUserData }) {
                 <div className="user-info">
                   <h2>
                     {user.name.first} {user.name.middle} {user.name.last}
-                  </h2>
+                  </h2><br></br>
                   <p>Email: {user.email}</p>
                   <p>User ID: {user.user_id}</p>
                 </div>
@@ -43,7 +43,7 @@ function HomePage({ userData, setUserData }) {
                         alt={`Captured Image ${index + 1}`}
                         className="captured-image"
                         style={{
-                          maxWidth: "150px",
+                          maxWidth: "30%",
                           height: "auto",
                           borderRadius: "5px",
                           marginTop: "15px",
@@ -76,6 +76,7 @@ function HomePage({ userData, setUserData }) {
 function FullPageUserDetails({ user, removeUser }) {
   const [reason, setReason] = useState('');
   const [showReasonInput, setShowReasonInput] = useState(false);
+   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleAccept = (email) => {
     const data = {
@@ -84,7 +85,7 @@ function FullPageUserDetails({ user, removeUser }) {
     };
 
     // Send accept request to API
-    fetch('http://192.168.1.7:8080/DataApprovalResult', {
+    fetch('https://student-registration-backend-yk25kmkzeq-el.a.run.app/DataApprovalResult', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -117,7 +118,7 @@ function FullPageUserDetails({ user, removeUser }) {
     };
 
     // Send reject request to API
-    fetch('http://192.168.1.7:8080/DataApprovalResult', {
+    fetch('https://student-registration-backend-yk25kmkzeq-el.a.run.app/DataApprovalResult', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -147,6 +148,14 @@ function FullPageUserDetails({ user, removeUser }) {
     handleReject(user.email);
   };
 
+  const openFullScreenImage = (imageSrc) => {
+    setSelectedImage(imageSrc);
+  };
+
+  const closeFullScreenImage = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="full-page-details">
       <h2>{user.name.first} {user.name.middle} {user.name.last}</h2>
@@ -169,6 +178,7 @@ function FullPageUserDetails({ user, removeUser }) {
                   style={{ maxWidth: "200px", height: "auto", borderRadius: '5px', marginRight: '40px', transition: 'transform 0.3s ease' }}
                   onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.5)'; }}
                   onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                  onClick={() => openFullScreenImage(image)} 
                 />
               ))}
             </div>
@@ -180,10 +190,18 @@ function FullPageUserDetails({ user, removeUser }) {
                   style={{ maxWidth: "200px", height: "auto", borderRadius: '5px', transition: 'transform 0.3s ease' }} // Adjust size as needed
                   onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.5)'; }}
                   onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                  onClick={() => openFullScreenImage(user.file)}
                 />
               </div>
             )}
           </div>
+          {selectedImage && (
+          <div className="full-screen-image-overlay" onClick={closeFullScreenImage}>
+            <div className="full-screen-image-container">
+              <img src={selectedImage} alt="Full Screen" className="full-screen-image" />
+            </div>
+          </div>
+        )}
         </div>
       )}
       <div className="decision-buttons">
